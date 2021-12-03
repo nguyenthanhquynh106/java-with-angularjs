@@ -31,5 +31,6 @@ public class GetAllPersonsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(jsonArray);
+        System.out.println("Got successfully!");
     }
 }

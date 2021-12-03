@@ -39,14 +39,15 @@ public class DeletePersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String name = jsonObject.get("name").toString();
-        System.out.println("name is: " + name);
 
         String id = jsonObject.get("id").toString();
-        System.out.println("id is: " + id);
+        id = id.substring(1, id.length() - 1);
+
+        String name = jsonObject.get("name").toString();
+        name = name.substring(1, name.length() - 1);
 
         String country = jsonObject.get("country").toString();
-        System.out.println("country is: " + country);
+        country = country.substring(1, country.length()-1);
 
         if (id == null || "".equals(id)) {
             throw new ServletException("id missing for delete operation");
@@ -57,6 +58,7 @@ public class DeletePersonServlet extends HttpServlet {
         Person p = new Person();
         p.setId(id);
         personDAO.deletePerson(p);
+        System.out.println("Deleted successfully!");
     }
 
 }

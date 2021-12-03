@@ -21,6 +21,7 @@ public class EditPersonServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuffer sb = new StringBuffer();
+
         try {
             BufferedReader reader = request.getReader();
             String line = null;
@@ -30,6 +31,7 @@ public class EditPersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = null;
         try {
@@ -37,17 +39,15 @@ public class EditPersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         String id = jsonObject.get("id").toString();
         id = id.substring(1, id.length() - 1);
-        System.out.println("id is: " + id);
 
         String name = jsonObject.get("name").toString();
         name = name.substring(1, name.length() - 1);
-        System.out.println("name is: " + name);
 
         String country = jsonObject.get("country").toString();
         country = country.substring(1, country.length() - 1);
-        System.out.println("country is: " + country);
 
         if (id == null || "".equals(id)) {
             throw new ServletException("id missing for edit operation");
@@ -64,6 +64,7 @@ public class EditPersonServlet extends HttpServlet {
             p.setName(name);
             p.setCountry(country);
             personDAO.updatePerson(p);
+            System.out.println("Updated successfully!");
         }
     }
 

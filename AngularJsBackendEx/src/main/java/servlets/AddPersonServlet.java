@@ -32,6 +32,7 @@ public class AddPersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         JsonParser parser = new JsonParser();
         JsonObject jsonObject = null;
         try {
@@ -39,13 +40,12 @@ public class AddPersonServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         String name = jsonObject.get("name").toString();
         name = name.substring(1, name.length()-1);
-        System.out.println("name is: " + name);
 
         String country = jsonObject.get("country").toString();
         country = country.substring(1, country.length()-1);
-        System.out.println("country is: " + country);
 
         if ((name == null || name.equals("")) || (country == null || country.equals(""))) {
             System.out.println("name and country can't be empty");
@@ -57,6 +57,7 @@ public class AddPersonServlet extends HttpServlet {
             MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
             MongoDBPersonDAO personDAO = new MongoDBPersonDAO(mongo);
             personDAO.createPerson(p);
+            System.out.println("Added successfully!");
         }
     }
 
