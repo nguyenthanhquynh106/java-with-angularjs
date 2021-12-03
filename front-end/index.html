@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Angular JS Demo</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="/main.js"></script>
+</head>
+
+<body ng-app="myApp" style="font-family: Arial">
+    <div ng-controller="myController">
+        <form>
+            <h2>Add a person</h2>
+            <input type="hidden" ng-model="Person.id" />
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" id="name" ng-model="Person.name" required /></td>
+                </tr>
+                <tr>
+                    <td>Country:</td>
+                    <td><input type="text" name="country" id="country" ng-model="Person.country" required /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" ng-click="submit()" class="btn btn-primary btn-sm">{{buttonText}}</button>
+                        <button type="button" ng-click="reset()" class="btn btn-warning btn-sm">Reset</button>
+                    </td>
+                </tr>
+            </table>
+            <div style="color: teal; font-size: 14px">{{message}}</div>
+
+            <h2>Person Information</h2>
+            <table border="1" width="70%" cellspacing="0">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>country</th>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="person in persons">
+                    <td>{{person.id}}</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.country}}</td>
+                    <td>
+                        <button type="button" ng-click="updatePerson(person)">Edit</button>
+                        <button type="button" ng-click="deletePerson(person)">Delete</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
